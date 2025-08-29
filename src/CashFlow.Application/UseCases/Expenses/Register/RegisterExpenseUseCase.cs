@@ -1,5 +1,6 @@
 ﻿using CashFlow.Communication.Requests;
 using CashFlow.Communication.Responses;
+using System.Linq;
 
 namespace CashFlow.Application.UseCases.Expenses.Register;
 
@@ -16,5 +17,12 @@ public class RegisterExpenseUseCase
     {
         var validator = new RegisterExpenseValidator();
         var result = validator.Validate(request);
+
+        if (!result.IsValid)
+        {
+            var errorMessages = result.Errors.Select(f => f.ErrorMessage).ToList();
+
+            throw new ArgumentException();
+        }
     }
 }
