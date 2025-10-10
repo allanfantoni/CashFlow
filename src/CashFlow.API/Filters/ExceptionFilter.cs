@@ -29,7 +29,10 @@ public class ExceptionFilter : IExceptionFilter
         }
         else
         {
-            ThrowUnknownError(context);
+            var errorResponse = new ResponseErrorJson(context.Exception.Message);
+            context.HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
+            context.Result = new BadRequestObjectResult(errorResponse);
+            // ThrowUnknownError(context);
         }
     }
 
