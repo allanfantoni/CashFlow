@@ -9,7 +9,7 @@ public class CashFlowDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        var connectionString = @"Server=localhost\\SQLEXPRESS;
+        var connectionString = @"Server=localhost\SQLEXPRESS;
                                  Database=cashflowdb;
                                  User Id=sa;
                                  Password=manager;
