@@ -5,16 +5,7 @@ namespace CashFlow.Infrastructure.DataAccess;
 
 internal class CashFlowDbContext : DbContext
 {
-    public DbSet<Expense> Expenses { get; set; }
+    public CashFlowDbContext(DbContextOptions options) : base(options) { }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        var connectionString = @"Server=localhost\SQLEXPRESS;
-                                 Database=cashflowdb;
-                                 User Id=sa;
-                                 Password=manager;
-                                 TrustServerCertificate=True;";
-        
-        optionsBuilder.UseSqlServer(connectionString);
-    }
+    public DbSet<Expense> Expenses { get; set; }
 }
